@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ActivityLaunchFlags</string>
+    <string name="stack_info">Stack ID: %s  \nTotal: %s, Running: %s</string>
+</resources>

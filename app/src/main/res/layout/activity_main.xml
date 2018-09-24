@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/white"
+            tools:minHeight="100dp">
+
+            <LinearLayout
+                android:id="@+id/ll_task_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:gravity="bottom"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/tv_save_instance_state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            tools:text="bundle" />
+
+        <TextView
+            android:id="@+id/tv_intent_extras"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@android:color/darker_gray"
+            android:padding="5dp"
+            android:textColor="@android:color/white"
+            tools:text="intent extras" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorAccent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Activities"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/btn_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_bg"
+                android:onClick="launchActivity"
+                android:text="Activity1"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/btn_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_bg"
+                android:onClick="launchActivity"
+                android:text="Activity2"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/btn_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_bg"
+                android:onClick="launchActivity"
+                android:text="Activity3"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/btn_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_bg"
+                android:onClick="launchActivity"
+                android:text="Activity4"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colorAccent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorAccent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Intent Flags"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold" />
+
+                <CheckBox
+                    android:id="@+id/cb_add_intent_extras"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Add Intent Extras" />
+
+                <CheckBox
+                    android:id="@+id/cb_new_task"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="New Task" />
+
+                <CheckBox
+                    android:id="@+id/cb_clear_task"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Clear Task" />
+
+                <CheckBox
+                    android:id="@+id/cb_clear_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Clear Top" />
+
+                <CheckBox
+                    android:id="@+id/cb_single_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Single Top" />
+
+            </LinearLayout>
+
+            <RadioGroup
+                android:id="@+id/rg_manifestLaunchModes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Manifest Launch Modes"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/rb_standard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="Standard" />`
+
+                <RadioButton
+                    android:id="@+id/rb_single_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Single Top" />
+
+                <RadioButton
+                    android:id="@+id/rb_single_task"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Single Task" />
+
+                <RadioButton
+                    android:id="@+id/rb_single_instance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Single Instance" />
+
+
+            </RadioGroup>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

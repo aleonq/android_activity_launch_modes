@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="notes.apps.aleonqe.com.activitylaunchflags">
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!--Stanrard Activities-->
+        <activity
+            android:name=".standard.Activity1_Standard"
+            android:launchMode="standard">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".standard.Activity2_Standard"
+            android:launchMode="standard" />
+        <activity
+            android:name=".standard.Activity3_Standard"
+            android:launchMode="standard" />
+        <activity
+            android:name=".standard.Activity4_Standard"
+            android:launchMode="standard" />
+
+        <!--Single Instance Activities-->
+        <activity
+            android:name=".single_instance.Activity4_SingleInstance"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".single_instance.Activity3_SingleInstance"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".single_instance.Activity2_SingleInstance"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".single_instance.Activity1_SingleInstance"
+            android:launchMode="singleInstance" />
+
+        <!--Single Top Activities-->
+        <activity
+            android:name=".single_top.Activity1_SingleTop"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".single_top.Activity2_SingleTop"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".single_top.Activity3_SingleTop"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".single_top.Activity4_SingleTop"
+            android:launchMode="singleTop" />
+
+        <!--Single Task Activities-->
+        <activity
+            android:name=".single_task.Activity1_SingleTask"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".single_task.Activity2_SingleTask"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".single_task.Activity3_SingleTask"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".single_task.Activity4_SingleTask"
+            android:launchMode="singleTask" />
+    </application>
+
+</manifest>
