@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 
 import notes.apps.aleonqe.com.activitylaunchflags.MainActivity;
 
-public class Activity2_SingleInstance extends MainActivity {
+public class SingleInstance_4 extends MainActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

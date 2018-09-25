@@ -13,7 +13,7 @@
 
         <!--Stanrard Activities-->
         <activity
-            android:name=".standard.Activity1_Standard"
+            android:name=".standard.Standard_1"
             android:launchMode="standard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,55 +22,55 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".standard.Activity2_Standard"
+            android:name=".standard.Standard_2"
             android:launchMode="standard" />
         <activity
-            android:name=".standard.Activity3_Standard"
+            android:name=".standard.Standard_3"
             android:launchMode="standard" />
         <activity
-            android:name=".standard.Activity4_Standard"
+            android:name=".standard.Standard_4"
             android:launchMode="standard" />
 
         <!--Single Instance Activities-->
         <activity
-            android:name=".single_instance.Activity4_SingleInstance"
+            android:name=".single_instance.SingleInstance_2"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".single_instance.Activity3_SingleInstance"
+            android:name=".single_instance.SingleInstance_3"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".single_instance.Activity2_SingleInstance"
+            android:name=".single_instance.SingleInstance_4"
             android:launchMode="singleInstance" />
         <activity
-            android:name=".single_instance.Activity1_SingleInstance"
+            android:name=".single_instance.SingleInstance_1"
             android:launchMode="singleInstance" />
 
         <!--Single Top Activities-->
         <activity
-            android:name=".single_top.Activity1_SingleTop"
+            android:name=".single_top.SingleTop_1"
             android:launchMode="singleTop" />
         <activity
-            android:name=".single_top.Activity2_SingleTop"
+            android:name=".single_top.SingleTop_2"
             android:launchMode="singleTop" />
         <activity
-            android:name=".single_top.Activity3_SingleTop"
+            android:name=".single_top.SingleTop_3"
             android:launchMode="singleTop" />
         <activity
-            android:name=".single_top.Activity4_SingleTop"
+            android:name=".single_top.SingleTop_4"
             android:launchMode="singleTop" />
 
         <!--Single Task Activities-->
         <activity
-            android:name=".single_task.Activity1_SingleTask"
+            android:name=".single_task.SingleTask_1"
             android:launchMode="singleTask" />
         <activity
-            android:name=".single_task.Activity2_SingleTask"
+            android:name=".single_task.SingleTask_2"
             android:launchMode="singleTask" />
         <activity
-            android:name=".single_task.Activity3_SingleTask"
+            android:name=".single_task.SingleTask_3"
             android:launchMode="singleTask" />
         <activity
-            android:name=".single_task.Activity4_SingleTask"
+            android:name=".single_task.SingleTask_4"
             android:launchMode="singleTask" />
     </application>
 

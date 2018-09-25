@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import notes.apps.aleonqe.com.activitylaunchflags.MainActivity;
 
-public class Activity3_Standard extends MainActivity {
+public class Standard_3 extends MainActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

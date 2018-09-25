@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
@@ -19,22 +20,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import notes.apps.aleonqe.com.activitylaunchflags.single_instance.Activity1_SingleInstance;
-import notes.apps.aleonqe.com.activitylaunchflags.single_instance.Activity2_SingleInstance;
-import notes.apps.aleonqe.com.activitylaunchflags.single_instance.Activity3_SingleInstance;
-import notes.apps.aleonqe.com.activitylaunchflags.single_instance.Activity4_SingleInstance;
-import notes.apps.aleonqe.com.activitylaunchflags.single_task.Activity1_SingleTask;
-import notes.apps.aleonqe.com.activitylaunchflags.single_task.Activity2_SingleTask;
-import notes.apps.aleonqe.com.activitylaunchflags.single_task.Activity3_SingleTask;
-import notes.apps.aleonqe.com.activitylaunchflags.single_task.Activity4_SingleTask;
-import notes.apps.aleonqe.com.activitylaunchflags.single_top.Activity1_SingleTop;
-import notes.apps.aleonqe.com.activitylaunchflags.single_top.Activity2_SingleTop;
-import notes.apps.aleonqe.com.activitylaunchflags.single_top.Activity3_SingleTop;
-import notes.apps.aleonqe.com.activitylaunchflags.single_top.Activity4_SingleTop;
-import notes.apps.aleonqe.com.activitylaunchflags.standard.Activity1_Standard;
-import notes.apps.aleonqe.com.activitylaunchflags.standard.Activity2_Standard;
-import notes.apps.aleonqe.com.activitylaunchflags.standard.Activity3_Standard;
-import notes.apps.aleonqe.com.activitylaunchflags.standard.Activity4_Standard;
+import notes.apps.aleonqe.com.activitylaunchflags.single_instance.SingleInstance_1;
+import notes.apps.aleonqe.com.activitylaunchflags.single_instance.SingleInstance_2;
+import notes.apps.aleonqe.com.activitylaunchflags.single_instance.SingleInstance_3;
+import notes.apps.aleonqe.com.activitylaunchflags.single_instance.SingleInstance_4;
+import notes.apps.aleonqe.com.activitylaunchflags.single_task.SingleTask_1;
+import notes.apps.aleonqe.com.activitylaunchflags.single_task.SingleTask_2;
+import notes.apps.aleonqe.com.activitylaunchflags.single_task.SingleTask_3;
+import notes.apps.aleonqe.com.activitylaunchflags.single_task.SingleTask_4;
+import notes.apps.aleonqe.com.activitylaunchflags.single_top.SingleTop_1;
+import notes.apps.aleonqe.com.activitylaunchflags.single_top.SingleTop_2;
+import notes.apps.aleonqe.com.activitylaunchflags.single_top.SingleTop_3;
+import notes.apps.aleonqe.com.activitylaunchflags.single_top.SingleTop_4;
+import notes.apps.aleonqe.com.activitylaunchflags.standard.Standard_1;
+import notes.apps.aleonqe.com.activitylaunchflags.standard.Standard_2;
+import notes.apps.aleonqe.com.activitylaunchflags.standard.Standard_3;
+import notes.apps.aleonqe.com.activitylaunchflags.standard.Standard_4;
 
 import static notes.apps.aleonqe.com.activitylaunchflags.util.Logutil.logx;
 
@@ -56,6 +57,12 @@ public abstract class MainActivity extends AppCompatActivity implements Activity
     private CheckBox cb_clearTask;
     private CheckBox cb_singleTop;
     private CheckBox cb_clearTop;
+
+    private TextView tv_activitiesTypeTitle;
+    private Button btn_1;
+    private Button btn_2;
+    private Button btn_3;
+    private Button btn_4;
 
     private RadioGroup rg_manifestLaunchModes;
 
@@ -99,7 +106,7 @@ public abstract class MainActivity extends AppCompatActivity implements Activity
     @Override
     protected void onResume() {
         super.onResume();
-        updateUI();
+        updateActivityStackUI();
     }
 
     @Override
@@ -126,10 +133,47 @@ public abstract class MainActivity extends AppCompatActivity implements Activity
         cb_clearTask = findViewById(R.id.cb_clear_task);
         cb_clearTop = findViewById(R.id.cb_clear_top);
         cb_singleTop = findViewById(R.id.cb_single_top);
+        tv_activitiesTypeTitle = findViewById(R.id.tv_activities_type_title);
+        btn_1 = findViewById(R.id.btn_1);
+        btn_2 = findViewById(R.id.btn_2);
+        btn_3 = findViewById(R.id.btn_3);
+        btn_4 = findViewById(R.id.btn_4);
         rg_manifestLaunchModes = findViewById(R.id.rg_manifestLaunchModes);
+        rg_manifestLaunchModes.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                updateActivityLaunchButtons(checkedId);
+            }
+        });
+        updateActivityLaunchButtons(launchMode);
     }
 
-    public void updateUI() {
+    protected void updateActivityLaunchButtons(int checkedId) {
+        String activityClass = "";
+        switch (checkedId) {
+            case LAUNCHMODE_SINGLE_INSTANCE:
+                activityClass = "SingleInstance";
+                break;
+            case LAUNCHMODE_SINGLE_TOP:
+                activityClass = "SingleTop";
+                break;
+            case LAUNCHMODE_SINGLE_TASK:
+                activityClass = "SingleTask";
+                break;
+            case LAUNCHMODE_STANDARD:
+                activityClass = "Standard";
+                break;
+        }
+
+        tv_activitiesTypeTitle.setText(activityClass + "Activities:");
+        // as we have four activity classes per manifest launch mode
+        btn_1.setText(activityClass + "_1");
+        btn_2.setText(activityClass + "_2");
+        btn_3.setText(activityClass + "_3");
+        btn_4.setText(activityClass + "_4");
+    }
+
+    public void updateActivityStackUI() {
         Map<Integer, Set<String>> activityStacks = application.getActivityStacks();
         List<LinearLayout> linearLayouts = getChildren(activityStacks.size());
 
@@ -167,64 +211,64 @@ public abstract class MainActivity extends AppCompatActivity implements Activity
             case R.id.btn_1:
                 switch (manifestLaunchMode) {
                     case LAUNCHMODE_SINGLE_INSTANCE:
-                        activityClass = Activity1_SingleInstance.class;
+                        activityClass = SingleInstance_1.class;
                         break;
                     case LAUNCHMODE_SINGLE_TOP:
-                        activityClass = Activity1_SingleTop.class;
+                        activityClass = SingleTop_1.class;
                         break;
                     case LAUNCHMODE_SINGLE_TASK:
-                        activityClass = Activity1_SingleTask.class;
+                        activityClass = SingleTask_1.class;
                         break;
                     case LAUNCHMODE_STANDARD:
-                        activityClass = Activity1_Standard.class;
+                        activityClass = Standard_1.class;
                         break;
                 }
                 break;
             case R.id.btn_2:
                 switch (manifestLaunchMode) {
                     case LAUNCHMODE_SINGLE_INSTANCE:
-                        activityClass = Activity2_SingleInstance.class;
+                        activityClass = SingleInstance_2.class;
                         break;
                     case LAUNCHMODE_SINGLE_TOP:
-                        activityClass = Activity2_SingleTop.class;
+                        activityClass = SingleTop_2.class;
                         break;
                     case LAUNCHMODE_SINGLE_TASK:
-                        activityClass = Activity2_SingleTask.class;
+                        activityClass = SingleTask_2.class;
                         break;
                     case LAUNCHMODE_STANDARD:
-                        activityClass = Activity2_Standard.class;
+                        activityClass = Standard_2.class;
                         break;
                 }
                 break;
             case R.id.btn_3:
                 switch (manifestLaunchMode) {
                     case LAUNCHMODE_SINGLE_INSTANCE:
-                        activityClass = Activity3_SingleInstance.class;
+                        activityClass = SingleInstance_3.class;
                         break;
                     case LAUNCHMODE_SINGLE_TOP:
-                        activityClass = Activity3_SingleTop.class;
+                        activityClass = SingleTop_3.class;
                         break;
                     case LAUNCHMODE_SINGLE_TASK:
-                        activityClass = Activity3_SingleTask.class;
+                        activityClass = SingleTask_3.class;
                         break;
                     case LAUNCHMODE_STANDARD:
-                        activityClass = Activity3_Standard.class;
+                        activityClass = Standard_3.class;
                         break;
                 }
                 break;
             case R.id.btn_4:
                 switch (manifestLaunchMode) {
                     case LAUNCHMODE_SINGLE_INSTANCE:
-                        activityClass = Activity4_SingleInstance.class;
+                        activityClass = SingleInstance_4.class;
                         break;
                     case LAUNCHMODE_SINGLE_TOP:
-                        activityClass = Activity4_SingleTop.class;
+                        activityClass = SingleTop_4.class;
                         break;
                     case LAUNCHMODE_SINGLE_TASK:
-                        activityClass = Activity4_SingleTask.class;
+                        activityClass = SingleTask_4.class;
                         break;
                     case LAUNCHMODE_STANDARD:
-                        activityClass = Activity4_Standard.class;
+                        activityClass = Standard_4.class;
                         break;
                 }
                 break;
@@ -277,8 +321,7 @@ public abstract class MainActivity extends AppCompatActivity implements Activity
     }
 
     private String getActivityRepresentation() {
-        String name[] = getClass().getSimpleName().split("_");
-        return "\n" + name[0] + " : " + hashCode() + "\n" + name[1];
+        return "\n" + getClass().getSimpleName() + "\n" + hashCode();
     }
 
     private void addChildren(List<LinearLayout> children) {

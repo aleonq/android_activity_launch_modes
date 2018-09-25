@@ -55,6 +55,7 @@
             android:background="@color/colorAccent" />
 
         <TextView
+            android:id="@+id/tv_activities_type_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Activities"

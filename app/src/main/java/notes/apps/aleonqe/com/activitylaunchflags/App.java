@@ -81,7 +81,7 @@ public class App extends Application {
 
     private void updateAll() {
         for (ActivityStackObserver observer : activityStackObservers) {
-            observer.updateUI();
+            observer.updateActivityStackUI();
         }
     }
 }

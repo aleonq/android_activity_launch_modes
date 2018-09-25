@@ -1,5 +1,5 @@
 package notes.apps.aleonqe.com.activitylaunchflags;
 
 interface ActivityStackObserver {
-    void updateUI();
+    void updateActivityStackUI();
 }
