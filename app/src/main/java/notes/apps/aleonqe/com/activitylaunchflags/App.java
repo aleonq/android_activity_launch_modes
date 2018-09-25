@@ -39,28 +39,35 @@ public class App extends Application {
         updateAll();
     }
 
-    public void removeFromStack(int id, String activityRep, int totalActivities) {
+    public void removeFromStack(int id, String activityRepresentation, int totalActivities) {
         Set<String> set = activityStacksMap.get(id);
         if (set == null) {
-            // the base activity in the stack is gone
-            // iterate and remove
-            for (Integer setId : activityStacksMap.keySet()) {
-                set = activityStacksMap.get(setId);
-                boolean result = set.remove(activityRep);
-                if (result) {
-                    if (set.isEmpty()) {
-                        activityStacksMap.remove(setId);
-                    }
-                    break;
-                }
-            }
+            // the base activity in the stack is gone: launcher home case
+            findAndRemove(activityRepresentation);
         } else {
-            set.remove(activityRep);
+            boolean isRemoved = set.remove(activityRepresentation);
+            if (!isRemoved) {
+                // the base activity in the stack is gone: single instance case
+                findAndRemove(activityRepresentation);
+            }
         }
         if (set != null && set.isEmpty()) {
             activityStacksMap.remove(id);
         }
         updateAll();
+    }
+
+    private void findAndRemove(String activityRep) {
+        for (Integer setId : activityStacksMap.keySet()) {
+            Set<String> set = activityStacksMap.get(setId);
+            boolean result = set.remove(activityRep);
+            if (result) {
+                if (set.isEmpty()) {
+                    activityStacksMap.remove(setId);
+                }
+                break;
+            }
+        }
     }
 
     private void throwUp(int id) {
