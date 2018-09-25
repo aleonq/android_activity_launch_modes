@@ -72,7 +72,6 @@ public abstract class MainActivity extends AppCompatActivity implements Activity
     private String activityName;
     private int count_allActivitiesOnStack;
     private int count_runningActivitiesOnStack;
-    private String activityPackage;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -100,7 +99,7 @@ public abstract class MainActivity extends AppCompatActivity implements Activity
             tv_intentExtras.setText(result);
         }
         setTaskList();
-        application.addToActivityStack(stackId, activityName, activityPackage, getApplication().getPackageName());
+        application.addToActivityStack(stackId, activityName);
     }
 
     @Override
@@ -119,7 +118,7 @@ public abstract class MainActivity extends AppCompatActivity implements Activity
     protected void onDestroy() {
         logx();
         setTaskList();
-        application.removeFromStack(stackId, activityName, count_allActivitiesOnStack, activityPackage, getApplication().getPackageName());
+        application.removeFromStack(stackId, activityName, count_allActivitiesOnStack);
         super.onDestroy();
         application.unRegister(this);
     }
@@ -276,7 +275,6 @@ public abstract class MainActivity extends AppCompatActivity implements Activity
         return activityClass;
     }
 
-
     private Intent prepareIntent(Class activityClass) {
         Intent intent = new Intent(this, activityClass);
         if (cb_addIntentExtras.isChecked()) {
@@ -308,7 +306,6 @@ public abstract class MainActivity extends AppCompatActivity implements Activity
                 stackId = taskInfo.id;
                 count_allActivitiesOnStack = taskInfo.numActivities;
                 count_runningActivitiesOnStack = taskInfo.numRunning;
-                activityPackage = taskInfo.topActivity.getPackageName();
             }
         }
 

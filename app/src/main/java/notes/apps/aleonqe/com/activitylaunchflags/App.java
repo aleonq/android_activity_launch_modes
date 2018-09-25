@@ -29,42 +29,38 @@ public class App extends Application {
         return activityStacksMap;
     }
 
-    public void addToActivityStack(int id, String activityRep, String activityPackage, String appPackage) {
-        if (activityPackage.equals(appPackage)) {
-            Set<String> set = activityStacksMap.get(id);
-            if (set == null) {
-                set = new LinkedHashSet<>();
-            }
-            set.add(activityRep);
-            activityStacksMap.put(id, set);
-            updateAll();
+    public void addToActivityStack(int id, String activityRep) {
+        Set<String> set = activityStacksMap.get(id);
+        if (set == null) {
+            set = new LinkedHashSet<>();
         }
+        set.add(activityRep);
+        activityStacksMap.put(id, set);
+        updateAll();
     }
 
-    public void removeFromStack(int id, String activityRep, int totalActivities, String activityPackage, String appPackage) {
-        if (activityPackage.equals(appPackage)) {
-            Set<String> set = activityStacksMap.get(id);
-            if (set == null) {
-                throwUp(id);
-            }
-            boolean isRemoved = set.remove(activityRep);
-            if (set.isEmpty()) {
-                activityStacksMap.remove(id);
-            }
-            if (!isRemoved) {
-                // iterate and remove
-                for (Integer setId : activityStacksMap.keySet()) {
-                    boolean result = activityStacksMap.get(setId).remove(activityRep);
-                    if (result) {
-                        if (activityStacksMap.get(setId).isEmpty()) {
-                            activityStacksMap.remove(setId);
-                        }
-                        break;
+    public void removeFromStack(int id, String activityRep, int totalActivities) {
+        Set<String> set = activityStacksMap.get(id);
+        if (set == null) {
+            // the base activity in the stack is gone
+            // iterate and remove
+            for (Integer setId : activityStacksMap.keySet()) {
+                set = activityStacksMap.get(setId);
+                boolean result = set.remove(activityRep);
+                if (result) {
+                    if (set.isEmpty()) {
+                        activityStacksMap.remove(setId);
                     }
+                    break;
                 }
             }
-            updateAll();
+        } else {
+            set.remove(activityRep);
         }
+        if (set != null && set.isEmpty()) {
+            activityStacksMap.remove(id);
+        }
+        updateAll();
     }
 
     private void throwUp(int id) {
