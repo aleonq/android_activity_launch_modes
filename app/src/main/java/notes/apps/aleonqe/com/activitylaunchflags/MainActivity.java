@@ -38,14 +38,15 @@ import notes.apps.aleonqe.com.activitylaunchflags.standard.Standard_3;
 import notes.apps.aleonqe.com.activitylaunchflags.standard.Standard_4;
 
 import static notes.apps.aleonqe.com.activitylaunchflags.util.Logutil.logx;
+import static notes.apps.aleonqe.com.activitylaunchflags.util.Logutil.toax;
 
 public abstract class MainActivity extends AppCompatActivity implements ActivityStackObserver {
 
+    public static final String KEY_ACTIVITY_INTENT = "activity_intent";
     private static final int LAUNCHMODE_SINGLE_INSTANCE = R.id.rb_single_instance;
     private static final int LAUNCHMODE_SINGLE_TOP = R.id.rb_single_top;
     private static final int LAUNCHMODE_SINGLE_TASK = R.id.rb_single_task;
     private static final int LAUNCHMODE_STANDARD = R.id.rb_standard;
-
     private int launchMode = LAUNCHMODE_STANDARD;// default
 
     private TextView tv_savedInstanceState;
@@ -58,6 +59,8 @@ public abstract class MainActivity extends AppCompatActivity implements Activity
     private CheckBox cb_singleTop;
     private CheckBox cb_clearTop;
 
+    private RadioGroup rg_finishLaunchingActivity;
+    private CheckBox cb_launchViaService;
     private TextView tv_activitiesTypeTitle;
     private Button btn_1;
     private Button btn_2;
@@ -133,6 +136,8 @@ public abstract class MainActivity extends AppCompatActivity implements Activity
         cb_clearTop = findViewById(R.id.cb_clear_top);
         cb_singleTop = findViewById(R.id.cb_single_top);
         tv_activitiesTypeTitle = findViewById(R.id.tv_activities_type_title);
+        rg_finishLaunchingActivity = findViewById(R.id.rg_finish_launching_activity);
+        cb_launchViaService = findViewById(R.id.cb_launch_via_service);
         btn_1 = findViewById(R.id.btn_1);
         btn_2 = findViewById(R.id.btn_2);
         btn_3 = findViewById(R.id.btn_3);
@@ -201,7 +206,24 @@ public abstract class MainActivity extends AppCompatActivity implements Activity
         launchMode = rg_manifestLaunchModes.getCheckedRadioButtonId();
         Class activityClass = getActivtiyClass(id, launchMode);
         Intent intent = prepareIntent(activityClass);
-        startActivity(intent);
+
+        if (rg_finishLaunchingActivity.getCheckedRadioButtonId() == R.id.rb_finish_before_launch) {
+            finish();
+        }
+        if (cb_launchViaService.isChecked()) {
+            // launch the new activity via service
+            toax(this, "Launching activity via service");
+            Intent serviceIntent = new Intent(this, ActivityLauncherService.class);
+            serviceIntent.putExtra(KEY_ACTIVITY_INTENT, intent);
+            startService(serviceIntent);
+        } else {
+            // launch the new activity via current activity
+            toax(this, "Launching activity via current activity");
+            startActivity(intent);
+        }
+        if (rg_finishLaunchingActivity.getCheckedRadioButtonId() == R.id.rb_finish_after_launch) {
+            finish();
+        }
     }
 
     private Class getActivtiyClass(int id, int manifestLaunchMode) {

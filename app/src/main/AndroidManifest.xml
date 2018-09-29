@@ -73,6 +73,8 @@
         <activity
             android:name=".single_task.SingleTask_4"
             android:launchMode="singleTask" />
+
+        <service android:name=".ActivityLauncherService" />
     </application>
 
 </manifest>

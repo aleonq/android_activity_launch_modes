@@ -55,6 +55,49 @@
             android:background="@color/colorAccent" />
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Finish Current Activity on new one's launch:"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/rg_finish_launching_activity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:background="@android:color/white"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <RadioButton
+                android:id="@+id/rb_finish_before_launch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Finish Before" />
+
+            <RadioButton
+                android:id="@+id/rb_finish_after_launch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Finish After" />
+
+            <RadioButton
+                android:id="@+id/rb_do_not_finish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Don't Finish" />
+        </RadioGroup>
+
+        <CheckBox
+            android:id="@+id/cb_launch_via_service"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Launch Via Service"
+            android:textColor="@color/colorPrimary" />
+
+        <TextView
             android:id="@+id/tv_activities_type_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
