@@ -346,7 +346,7 @@ public abstract class MainActivity extends AppCompatActivity implements Activity
     private void addChildren(List<LinearLayout> children) {
         ll_taskListContainer.removeAllViews();
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        int margin = (int) getResources().getDimension(R.dimen.standard_margin);
+        int margin = (int) getResources().getDimension(R.dimen.standard_gutter);
         layoutParams.setMargins(margin, margin, margin, margin);
         for (LinearLayout view : children) {
             view.setLayoutParams(layoutParams);

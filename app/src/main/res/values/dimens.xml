@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="standard_margin">5dp</dimen>
+    <dimen name="standard_gutter">5dp</dimen>
+    <dimen name="standard_gutter_bigger">20dp</dimen>
+    <dimen name="standard_gutter_big">10dp</dimen>
+    <dimen name="line_height">2dp</dimen>
 </resources>
