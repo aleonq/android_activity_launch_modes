@@ -10,5 +10,4 @@ public class Standard_1 extends MainActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
 }
